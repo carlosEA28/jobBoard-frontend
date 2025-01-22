@@ -9,8 +9,8 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return (
-    <div>
-      <h1>oi</h1>
-    </div>
+    <main>
+      <section></section>
+    </main>
   );
 }

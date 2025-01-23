@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 /* fonte globlal */
-@layer base {
-  body {
-    @apply font-PlusJakartaSans;
-  }
+body {
+  @apply font-PlusJakartaSans bg-[#F5F3EA];
 }

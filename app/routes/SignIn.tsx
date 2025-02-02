@@ -1,12 +1,11 @@
-import imgSignUp from "app/assets/signUpImg.svg";
-import Input from "app/components/Input";
+import imgSignIn from "app/assets/signInImg.svg";
 import SocialButton from "app/components/SocialButton";
 import google from "app/assets/googleLogo.svg";
 import git from "app/assets/github.svg";
 import FormInput from "~/components/FormInput";
 import Button from "~/components/Button";
 
-export default function SignUp() {
+export default function SignIn() {
   return (
     <div className="flex w-full h-screen">
       <div className="w-1/2 flex items-center justify-center bg-[#F7F5F0] p-10">
@@ -30,21 +29,6 @@ export default function SignUp() {
           </div>
 
           <form className="flex flex-col justify-center gap-4">
-            <div className="flex gap-4">
-              <div className="flex flex-col w-1/2">
-                <label className="mb-1 text-sm font-medium text-left">
-                  First Name
-                </label>
-                <FormInput width="full" placeholder="First Name" />
-              </div>
-              <div className="flex flex-col w-1/2">
-                <label className="mb-1 text-sm font-medium text-left">
-                  Last Name
-                </label>
-                <FormInput width="full" placeholder="Last Name" />
-              </div>
-            </div>
-
             <div className="flex flex-col">
               <label className="mb-1 text-sm font-medium text-left">
                 Email
@@ -69,9 +53,9 @@ export default function SignUp() {
             .
           </p>
           <p className="text-sm text-gray-700 mt-4 text-center">
-            Have an account?
-            <a href="/signin" className="font-bold">
-              Sign In
+            Don’t a have account?
+            <a href="/signup" className="font-bold">
+              Sign Up
             </a>
           </p>
         </div>
@@ -79,8 +63,8 @@ export default function SignUp() {
       <div className="w-1/2 h-full">
         <img
           className="w-full h-full object-cover"
-          src={imgSignUp}
-          alt="Sign Up Illustration"
+          src={imgSignIn}
+          alt="Sign In Illustration"
         />
       </div>
     </div>

@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -54,9 +55,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  //tirando a navbar das rotas que nao tem
+  const location = useLocation();
+  const hiddenNavRoutes = ["/signin", "/signup"];
+
   return (
     <div>
-      <Navbar />
+      {!hiddenNavRoutes.includes(location.pathname) && <Navbar />}
       <Outlet />
     </div>
   );

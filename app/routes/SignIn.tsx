@@ -2,8 +2,7 @@ import imgSignIn from "app/assets/signInImg.svg";
 import SocialButton from "app/components/SocialButton";
 import google from "app/assets/googleLogo.svg";
 import git from "app/assets/github.svg";
-import FormInput from "~/components/FormInput";
-import Button from "~/components/Button";
+import SignInForm from "~/components/SignInForm";
 
 export default function SignIn() {
   return (
@@ -11,7 +10,7 @@ export default function SignIn() {
       <div className="w-1/2 flex items-center justify-center bg-[#F7F5F0] p-10">
         <div className=" flex flex-col text-center w-[370px] max-w-md">
           <div className="flex flex-col gap-4 mb-6">
-            <h3 className="text-3xl text-left font-bold">Sign Up</h3>
+            <h3 className="text-3xl text-left font-bold">Sign In</h3>
             <p className="text-gray-600 text-left">
               Find jobs, events and communities that celebrate your background.
             </p>
@@ -28,22 +27,7 @@ export default function SignIn() {
             <hr className="flex-grow border-gray-300" />
           </div>
 
-          <form className="flex flex-col justify-center gap-4">
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-left">
-                Email
-              </label>
-              <FormInput width="full" placeholder="Email Address" />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-left">
-                Password
-              </label>
-              <FormInput width="full" placeholder="Password" />
-            </div>
-            <Button title="Sign Up" color="bg-[#FF9966]" textColor="" />
-          </form>
+          <SignInForm />
 
           <p className="text-xs text-gray-500 mt-4">
             By clicking "Sign up" you're agreeing to our{" "}

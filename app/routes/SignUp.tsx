@@ -1,10 +1,8 @@
 import imgSignUp from "app/assets/signUpImg.svg";
-import Input from "app/components/Input";
 import SocialButton from "app/components/SocialButton";
 import google from "app/assets/googleLogo.svg";
 import git from "app/assets/github.svg";
-import FormInput from "~/components/FormInput";
-import Button from "~/components/Button";
+import SignUpForm from "~/components/SignUpForm";
 
 export default function SignUp() {
   return (
@@ -29,37 +27,7 @@ export default function SignUp() {
             <hr className="flex-grow border-gray-300" />
           </div>
 
-          <form className="flex flex-col justify-center gap-4">
-            <div className="flex gap-4">
-              <div className="flex flex-col w-1/2">
-                <label className="mb-1 text-sm font-medium text-left">
-                  First Name
-                </label>
-                <FormInput width="full" placeholder="First Name" />
-              </div>
-              <div className="flex flex-col w-1/2">
-                <label className="mb-1 text-sm font-medium text-left">
-                  Last Name
-                </label>
-                <FormInput width="full" placeholder="Last Name" />
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-left">
-                Email
-              </label>
-              <FormInput width="full" placeholder="Email Address" />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="mb-1 text-sm font-medium text-left">
-                Password
-              </label>
-              <FormInput width="full" placeholder="Password" />
-            </div>
-            <Button title="Sign Up" color="bg-[#FF9966]" textColor="" />
-          </form>
+          <SignUpForm />
 
           <p className="text-xs text-gray-500 mt-4">
             By clicking "Sign up" you're agreeing to our{" "}

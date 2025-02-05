@@ -8,7 +8,6 @@ export default function SignInForm() {
   const [password, setPassword] = useState("");
 
   function handleSubmitLogin(e: FormEvent) {
-    e.preventDefault();
     LoginLocalUser(email, password);
   }
 
@@ -22,6 +21,9 @@ export default function SignInForm() {
           value={email}
           type={"email"}
           onChange={(e) => setEmail(e.target.value)}
+          name={"email"}
+          register={}
+          errors={}
         />
       </div>
 
@@ -33,14 +35,19 @@ export default function SignInForm() {
           value={password}
           type={"password"}
           onChange={(e) => setPassword(e.target.value)}
+          name={"password"}
+          register={}
+          errors={}
         />
       </div>
-      <Button
-        title="Sign In"
-        color="bg-[#FF9966]"
-        textColor=""
-        onClick={handleSubmitLogin}
-      />
+
+      <button
+        type="submit"
+        className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-gray-400"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Enviando..." : "Sign Up"}
+      </button>
     </form>
   );
 }

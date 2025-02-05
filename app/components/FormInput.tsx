@@ -3,18 +3,23 @@ import type { FormInputProps } from "~/types/types";
 export default function FormInput({
   placeholder,
   width,
-  onChange,
-  value,
   type,
+  name,
+  register,
+  rules,
+  error,
 }: FormInputProps) {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={`h-[60px] bg-white p-3 rounded-md outline-none`}
-      style={{ width: width }}
-      value={value}
-      onChange={onChange}
-    />
+    <div className="w-full">
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={`h-[60px] bg-white p-3 rounded-md outline-none`}
+        style={{ width: width }}
+        {...register(name, rules)}
+        id={name}
+      />
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+    </div>
   );
 }

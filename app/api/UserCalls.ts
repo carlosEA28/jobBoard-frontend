@@ -13,7 +13,7 @@ export async function CreateAccount(
     password,
   };
 
-  axios
+  await axios
     .post("http://localhost:8080/user/register", userData, {
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export async function LoginLocalUser(email: string, password: string) {
     password,
   };
 
-  axios
+  await axios
     .post("http://localhost:8080/user/login/local", userLoginData, {
       headers: {
         "Content-Type": "application/json",

@@ -1,67 +1,74 @@
-import { useState, type FormEvent } from "react";
 import FormInput from "./FormInput";
-import Button from "./Button";
-import axios from "axios";
 import { CreateAccount } from "~/api/UserCalls";
 import { useForm } from "react-hook-form";
+import { signUpSchema } from "~/schemas/schemas";
+import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function SignUpForm() {
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  type FormData = z.infer<typeof signUpSchema>;
 
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
+    resolver: zodResolver(signUpSchema),
+    mode: "onSubmit",
+  });
 
-  async function onSubmit() {
-    CreateAccount(firstName, lastName, email, password);
+  async function onSubmit(data: FormData) {
+    CreateAccount(data.firstName, data.lastName, data.email, data.password);
   }
 
   return (
     <form
-      className="flex flex-col justify-center gap-4"
+      className="flex flex-col items-center justify-center gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex gap-4">
         <FormInput
           placeholder="First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
           type={"text"}
           width={"179px"}
+          name={"firstName"}
+          error={errors.firstName?.message}
+          register={register}
         />
         <FormInput
           placeholder="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
           width={"179px"}
           type={"text"}
+          name={"lastName"}
+          error={errors.lastName?.message}
+          register={register}
         />
       </div>
 
       <FormInput
         type="email"
         placeholder="Email Address"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        width={""}
+        width={"100%"}
+        name={"email"}
+        error={errors.email?.message}
+        register={register}
       />
       <FormInput
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        width={""}
+        width={"100%"}
+        name={"password"}
+        error={errors.password?.message}
+        register={register}
       />
 
-      <Button
-        title="Sign Up"
-        color="bg-[#FF9966]"
-        textColor={""}
-        onClick={function (e: React.MouseEvent<HTMLButtonElement>): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
+      <button
+        type="submit"
+        className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-gray-400"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Enviando..." : "Sign Up"}
+      </button>
     </form>
   );
 }

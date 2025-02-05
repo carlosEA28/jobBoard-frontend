@@ -2,6 +2,8 @@ import { useState, type FormEvent } from "react";
 import FormInput from "./FormInput";
 import Button from "./Button";
 import axios from "axios";
+import { CreateAccount } from "~/api/UserCalls";
+import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {
   const [firstName, setFirstName] = useState<string>("");
@@ -9,59 +11,30 @@ export default function SignUpForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
+  const { handleSubmit, register } = useForm();
 
-    const userData = {
-      firstName,
-      secondName: lastName,
-      email,
-      password,
-    };
-
-    axios
-      .post("http://localhost:8080/user/register", userData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.status, res.data);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.error(
-            "Erro na resposta do servidor:",
-            error.response.status,
-            error.response.data
-          );
-        } else if (error.request) {
-          console.error(
-            "Erro de rede ou servidor não respondeu:",
-            error.request
-          );
-        } else {
-          console.error("Erro desconhecido:", error.message);
-        }
-      });
+  async function onSubmit() {
+    CreateAccount(firstName, lastName, email, password);
   }
 
   return (
-    <form className="flex flex-col justify-center gap-4">
+    <form
+      className="flex flex-col justify-center gap-4"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex gap-4">
         <FormInput
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          width={""}
           type={"text"}
+          width={"179px"}
         />
         <FormInput
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          width={""}
+          width={"179px"}
           type={"text"}
         />
       </div>
@@ -84,8 +57,10 @@ export default function SignUpForm() {
       <Button
         title="Sign Up"
         color="bg-[#FF9966]"
-        onClick={handleSubmit}
         textColor={""}
+        onClick={function (e: React.MouseEvent<HTMLButtonElement>): void {
+          throw new Error("Function not implemented.");
+        }}
       />
     </form>
   );

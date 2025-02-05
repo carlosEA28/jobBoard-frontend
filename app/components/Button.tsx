@@ -1,14 +1,5 @@
 import { Link } from "react-router";
-
-interface buttonProps {
-  title: string;
-  color: string;
-  textColor: string;
-  border?: string;
-  borderColor?: string;
-  type?: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+import type { buttonProps } from "~/types/types";
 
 export default function Button({
   title,
@@ -19,7 +10,7 @@ export default function Button({
   onClick,
 }: buttonProps) {
   return (
-    <Link to={"/signin"}>
+    <Link to={"#"}>
       <button
         onClick={onClick}
         className={`w-[180px] h-[60px] font-semibold border rounded-md ${color} ${textColor} ${border} ${borderColor}`}

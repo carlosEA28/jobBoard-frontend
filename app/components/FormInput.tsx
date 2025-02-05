@@ -1,12 +1,4 @@
-import { useState } from "react";
-
-interface FormInputProps {
-  width: string;
-  placeholder: string;
-  value: string;
-  type: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import type { FormInputProps } from "~/types/types";
 
 export default function FormInput({
   placeholder,
@@ -19,7 +11,8 @@ export default function FormInput({
     <input
       type={type}
       placeholder={placeholder}
-      className={`w-[${width}] h-[60px] bg-white p-3 rounded-md outline-none`}
+      className={`h-[60px] bg-white p-3 rounded-md outline-none`}
+      style={{ width: width }}
       value={value}
       onChange={onChange}
     />

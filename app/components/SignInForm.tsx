@@ -1,14 +1,15 @@
 import FormInput from "./FormInput";
 import Button from "./Button";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { LoginLocalUser } from "~/api/UserCalls";
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function cleanInput() {
-    setEmail("");
-    setPassword("");
+  function handleSubmitLogin(e: FormEvent) {
+    e.preventDefault();
+    LoginLocalUser(email, password);
   }
 
   return (
@@ -19,8 +20,8 @@ export default function SignInForm() {
           width="full"
           placeholder="Email Address"
           value={email}
-          type={""}
-          onChange={cleanInput}
+          type={"email"}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
@@ -29,20 +30,16 @@ export default function SignInForm() {
         <FormInput
           width="full"
           placeholder="Password"
-          value={""}
-          type={""}
-          onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
-            throw new Error("Function not implemented.");
-          }}
+          value={password}
+          type={"password"}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <Button
         title="Sign In"
         color="bg-[#FF9966]"
         textColor=""
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
+        onClick={handleSubmitLogin}
       />
     </form>
   );

@@ -9,3 +9,11 @@ export const signUpSchema = z.object({
     .nonempty("The field Email cannot be empty"),
   password: z.string().nonempty("The field Password cannot be empty"),
 });
+
+export const signInSchema = z.object({
+  email: z
+    .string()
+    .email("Insert a valid email")
+    .nonempty("The field Email cannot be empty"),
+  password: z.string().nonempty("The field Password cannot be empty"),
+});

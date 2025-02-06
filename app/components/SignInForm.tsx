@@ -1,52 +1,62 @@
 import FormInput from "./FormInput";
-import Button from "./Button";
-import { useState, type FormEvent } from "react";
 import { LoginLocalUser } from "~/api/UserCalls";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
+import { signInSchema, signUpSchema } from "~/schemas/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
 
 export default function SignInForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  type FormData = z.infer<typeof signInSchema>;
 
-  function handleSubmitLogin(e: FormEvent) {
-    LoginLocalUser(email, password);
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
+    resolver: zodResolver(signInSchema),
+    mode: "onSubmit",
+  });
+
+  async function handleSubmitLogin(data: FormData) {
+    await LoginLocalUser(data.email, data.password);
   }
 
   return (
-    <form className="flex flex-col justify-center gap-4">
-      <div className="flex flex-col">
+    <form
+      className="flex flex-col items-center justify-center gap-4"
+      onSubmit={handleSubmit(handleSubmitLogin)}
+    >
+      <div className="w-full flex flex-col">
         <label className="mb-1 text-sm font-medium text-left">Email</label>
         <FormInput
-          width="full"
+          width={"100%"}
           placeholder="Email Address"
-          value={email}
           type={"email"}
-          onChange={(e) => setEmail(e.target.value)}
           name={"email"}
-          register={}
-          errors={}
+          register={register}
+          error={errors.email?.message}
         />
       </div>
 
-      <div className="flex flex-col">
+      <div className="w-full flex flex-col">
         <label className="mb-1 text-sm font-medium text-left">Password</label>
         <FormInput
-          width="full"
+          width={"100%"}
           placeholder="Password"
-          value={password}
           type={"password"}
-          onChange={(e) => setPassword(e.target.value)}
           name={"password"}
-          register={}
-          errors={}
+          register={register}
+          error={errors.password?.message}
         />
       </div>
 
       <button
         type="submit"
-        className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-gray-400"
+        className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-[#FF9966] flex items-center justify-center"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Enviando..." : "Sign Up"}
+        {isSubmitting ? <Loader className="animate-spin" /> : "Sign Up"}
       </button>
     </form>
   );

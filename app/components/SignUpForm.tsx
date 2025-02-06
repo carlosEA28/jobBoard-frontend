@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { signUpSchema } from "~/schemas/schemas";
 import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader } from "lucide-react";
 
 export default function SignUpForm() {
   type FormData = z.infer<typeof signUpSchema>;
@@ -18,7 +19,12 @@ export default function SignUpForm() {
   });
 
   async function onSubmit(data: FormData) {
-    CreateAccount(data.firstName, data.lastName, data.email, data.password);
+    await CreateAccount(
+      data.firstName,
+      data.lastName,
+      data.email,
+      data.password
+    );
   }
 
   return (
@@ -64,10 +70,10 @@ export default function SignUpForm() {
 
       <button
         type="submit"
-        className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-gray-400"
+        className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-[#FF9966] flex items-center justify-center"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Enviando..." : "Sign Up"}
+        {isSubmitting ? <Loader className="animate-spin" /> : "Sign Up"}
       </button>
     </form>
   );

@@ -1,4 +1,4 @@
-import Button from "./Button";
+// import Button from "./Button";
 import { MapPin, Clock4 } from "lucide-react";
 import logotest from "app/assets/logoTest.png";
 import pin from "app/assets/pin.svg";
@@ -33,13 +33,13 @@ export default function JobCard({
           </div>
 
           <div>
-            <Button
+            {/* <Button
               title="Apply Now"
               textColor="#110B08"
               color="transparent"
               border="border"
               borderColor="border-black"
-            />
+            /> */}
           </div>
         </div>
         <p className="text-[18px] text-[#574F4A] w-[840px]">{description}</p>

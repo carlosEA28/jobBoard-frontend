@@ -1,6 +1,6 @@
 import Input from "~/components/Input";
 import type { Route } from "./+types/home";
-import Button from "~/components/Button";
+// import Button from "~/components/Button";
 import heroImg from "../../app/assets/heroImg.svg";
 import snowFlake from "../../app/assets/snowflake.svg";
 import hues from "../../app/assets/hues.svg";
@@ -38,12 +38,12 @@ export default function Home() {
           </p>
           <div className="flex items-center justify-center gap-5">
             <Input />
-            <Button
+            {/* <Button
               title="Explore More"
               color="bg-[#FF9966]"
               textColor="text-[#110B08]"
               border="border-none"
-            />
+            /> */}
           </div>
         </div>
       </section>
@@ -127,11 +127,11 @@ export default function Home() {
               board.
             </p>
           </div>
-          <Button
+          {/* <Button
             title="Sign Up Now"
             color="bg-[#FF9966]"
             textColor="bg-[#110B08]"
-          />
+          /> */}
         </div>
 
         <div className="w-[1170px] h-[1715px]  flex flex-col items-center justify-center ">
@@ -176,11 +176,11 @@ export default function Home() {
               releaseTime="5 days ago"
               workType="Remote"
             />
-            <Button
+            {/* <Button
               title="Browse All Jobs"
               color="bg-[#FF9966]"
               textColor="bg-[#110B08]"
-            />
+            /> */}
           </div>
         </div>
       </section>

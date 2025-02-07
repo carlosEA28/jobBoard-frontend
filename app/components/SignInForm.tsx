@@ -5,6 +5,7 @@ import type { z } from "zod";
 import { signInSchema, signUpSchema } from "~/schemas/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
+import { Link, Navigate, useNavigate } from "react-router";
 
 export default function SignInForm() {
   type FormData = z.infer<typeof signInSchema>;

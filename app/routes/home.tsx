@@ -15,6 +15,8 @@ import imgCard1 from "app/assets/imgCard1.svg";
 import imgCard2 from "app/assets/imgCard2.svg";
 import imgCard3 from "app/assets/imgCard3.svg";
 import JobCard from "~/components/JobCard";
+import { Loader } from "lucide-react";
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -132,6 +134,14 @@ export default function Home() {
             color="bg-[#FF9966]"
             textColor="bg-[#110B08]"
           /> */}
+          <Link to={"/signup"}>
+            <button
+              type="submit"
+              className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-[#FF9966] flex items-center justify-center"
+            >
+              Sign Up Now
+            </button>
+          </Link>
         </div>
 
         <div className="w-[1170px] h-[1715px]  flex flex-col items-center justify-center ">

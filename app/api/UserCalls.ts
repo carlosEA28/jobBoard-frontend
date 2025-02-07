@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export async function CreateAccount(
   firstName: string,
@@ -22,6 +23,9 @@ export async function CreateAccount(
     })
     .then((res) => {
       console.log(res.status, res.data);
+      if (res.status === 200) {
+        window.location.href = "/signin";
+      }
     })
     .catch((error) => {
       if (error.response) {
@@ -52,7 +56,13 @@ export async function LoginLocalUser(email: string, password: string) {
       withCredentials: true,
     })
     .then((res) => {
+      Cookies.set("acess_token", res.data.token);
       console.log(res.status, res.data);
+      console.log(Cookies.get());
+
+      if (res.status === 200) {
+        window.location.href = "/";
+      }
     })
     .catch((error) => {
       if (error.response) {

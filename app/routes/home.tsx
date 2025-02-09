@@ -15,7 +15,7 @@ import imgCard1 from "app/assets/imgCard1.svg";
 import imgCard2 from "app/assets/imgCard2.svg";
 import imgCard3 from "app/assets/imgCard3.svg";
 import JobCard from "~/components/JobCard";
-import { Loader } from "lucide-react";
+import { Loader, Search } from "lucide-react";
 import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
@@ -40,12 +40,12 @@ export default function Home() {
           </p>
           <div className="flex items-center justify-center gap-5">
             <Input />
-            {/* <Button
-              title="Explore More"
-              color="bg-[#FF9966]"
-              textColor="text-[#110B08]"
-              border="border-none"
-            /> */}
+            <button
+              type="submit"
+              className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-[#FF9966] flex items-center justify-center"
+            >
+              <Search />
+            </button>
           </div>
         </div>
       </section>
@@ -129,11 +129,7 @@ export default function Home() {
               board.
             </p>
           </div>
-          {/* <Button
-            title="Sign Up Now"
-            color="bg-[#FF9966]"
-            textColor="bg-[#110B08]"
-          /> */}
+
           <Link to={"/signup"}>
             <button
               type="submit"

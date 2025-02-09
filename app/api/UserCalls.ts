@@ -56,7 +56,7 @@ export async function LoginLocalUser(email: string, password: string) {
       withCredentials: true,
     })
     .then((res) => {
-      Cookies.set("acess_token", res.data.token);
+      Cookies.set("token", res.data.token);
       console.log(res.status, res.data);
       console.log(Cookies.get());
 
@@ -77,4 +77,32 @@ export async function LoginLocalUser(email: string, password: string) {
         console.error("Erro desconhecido:", error.message);
       }
     });
+}
+
+export async function getUserInfo() {
+  try {
+    const data = await axios.get(`http://localhost:8080/user/currentUser`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      withCredentials: true,
+    });
+
+    const { data: userInfo } = await axios.get(
+      `http://localhost:8080/user/info/${data.data}`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+        withCredentials: true,
+      }
+    );
+
+    console.log(userInfo);
+
+    return userInfo;
+  } catch (error) {
+    console.error("Erro ao buscar info", error);
+    throw error;
+  }
 }

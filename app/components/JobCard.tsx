@@ -33,13 +33,12 @@ export default function JobCard({
           </div>
 
           <div>
-            {/* <Button
-              title="Apply Now"
-              textColor="#110B08"
-              color="transparent"
-              border="border"
-              borderColor="border-black"
-            /> */}
+            <button
+              type="submit"
+              className="bg-[#FF9966] w-[180px] h-[60px] font-semibold border rounded-md disabled:bg-[#FF9966] flex items-center justify-center"
+            >
+              Apply Now
+            </button>
           </div>
         </div>
         <p className="text-[18px] text-[#574F4A] w-[840px]">{description}</p>
